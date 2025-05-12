@@ -25,6 +25,7 @@ body {
   --text-color: #b9b9b9;
   --inner-border: 1px solid #53b6dd47;
 }
+
 .container {
   transform: scale(0.87);
   min-height: calc(100vh - 40px);
@@ -49,33 +50,7 @@ body {
   grid-template-rows: 103fr 608.5fr;
   animation: container-fill-space 0.1s 1s 1 forwards;
 }
-/* .mobile-potrait {
-  display: block;
-  font-size: 8vh;
-  padding: 0 20px;
-  opacity: 0.8;
-  line-height: 1;
-  margin-top: -4rem;
-  animation: fade-loop 3s infinite;
-}
-@keyframes fade-loop {
-  0% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
 
-.landscape {
-  display: none;
-} */
 @keyframes container-fill-space {
   0% {
     border: 1px solid var(--main-color);
@@ -190,8 +165,8 @@ body {
 .menu-item.active {
   background: linear-gradient(
       0deg,
-      rgba(83, 182, 221, 0.8),
-      rgba(83, 182, 221, 0.8)
+      rgba(83, 182, 221, 0.6),
+      rgba(83, 182, 221, 0.6)
     ),
     linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     linear-gradient(
@@ -218,14 +193,21 @@ body {
 }
 
 .menu-item span {
-  color: transparent;
   color: white;
   font-size: small;
+  color: var(--main-color);
+  font-weight: 500;
 }
 
+.menu-item.active span {
+  color: white;
+  font-weight: 600;
+}
 .menu-item .menu-item-icon {
-  /* height: 15px; */
-  /* width: 15px; */
+  margin-right: 8px;
+}
+.menu-item .menu-item-icon.active {
+  filter: none;
 }
 
 /* Table Container */
@@ -240,6 +222,7 @@ body {
   width: 90%;
   padding: 2rem 0 1rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .table-wrapper .table-title .table-name {
@@ -247,17 +230,15 @@ body {
   font-weight: 500;
   font-size: 27.9553px;
   line-height: 42px;
-  /* color: #35758f; */
 }
 .table-title .search-bar {
   width: 150px;
   height: 33px;
   position: relative;
   display: flex;
-align-items: center;
-gap: 6px;
-
-padding-left: 11px;
+  align-items: center;
+  gap: 6px;
+  padding-left: 11px;
 }
 .table-title .search-bar::after {
   content: "";
@@ -300,16 +281,35 @@ padding-left: 11px;
 }
 .table-title .search-bar input[type="text"]::placeholder {
   color: #53b6dd;
-
 }
-
-.table-container {
+.table-bg {
   width: 90.1%;
   height: 60%;
   position: relative;
-  opacity: 0;
-  animation: table-appear 0.5s 1s forwards;
 }
+.table-container {
+  width: 100%;
+  width: calc(0.72546 * 100vw);
+  overflow-x: scroll;
+  height: 100%;
+  animation: table-appear 0.5s 1s forwards;
+  scrollbar-width: thin;
+  scrollbar-color: #53b6dd32 transparent;
+}
+.table-container::-webkit-scrollbar {
+  background: red;
+  width: 12px;
+}
+
+.table-container::-webkit-scrollbar-button {
+  display: none;
+  /* color: transparent; */
+  display: none;
+}
+.table-container::-webkit-scrollbar-track {
+  display: none;
+}
+
 @keyframes table-appear {
   0% {
     opacity: 0;
@@ -319,7 +319,7 @@ padding-left: 11px;
     opacity: 1;
   }
 }
-.table-container::after {
+.table-bg::after {
   content: "  ";
   width: 100%;
   height: 100%;
@@ -343,10 +343,10 @@ padding-left: 11px;
   opacity: 0.3;
   z-index: -1;
 }
+
 .table-container table {
-  width: 100%;
+  width: 921.395px;
   height: 100%;
-  overflow-y: auto;
   border-collapse: collapse;
 }
 
@@ -495,21 +495,43 @@ padding-left: 11px;
   border-radius: 10px;
 }
 
-/* @media screen and (orientation: landscape) {
-  .mobile-potrait {
+/* Repsonsive styles */
+.mobile {
+  display: none;
+}
+@media (max-width: 840px) {
+  .mobile {
+    display: block;
+  }
+  .header > .logo img {
+    max-width: 150px;
+  }
+
+  .mobile-logo img {
+    max-width: 189px;
+    align-self: center;
+  }
+  .header .header-right {
+    transform: scale(0.8) translate(11%);
+  }
+
+  .desktop {
     display: none;
   }
-  .landscape {
-    animation: appear 0.5s forwards;
+  .container {
+    grid-template-areas:
+      "header"
+      "table-container";
+    grid-template-columns: 1fr;
+    grid-template-rows: 103fr 608.5fr;
   }
-} 
-@keyframes appear {
-  0% {
-    display: block;
-    opacity: 0;
+  .table-wrapper .table-title .table-name {
+    font-size: x-large;
   }
-  100% {
-    display: block;
-    opacity: 1;
+  .table-container {
+    width: calc(0.901 * 100vw);
   }
-}*/
+  .menu {
+    display: none;
+  }
+}
