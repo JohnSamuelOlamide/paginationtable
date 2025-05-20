@@ -60,21 +60,21 @@ fetch("data.json")
 
       if (tdl + 1 < 10) {
         for (i = 0; i < tdl; i++) {
-          pagination.innerHTML += `<a href="/?page=${
+          pagination.innerHTML += `<a href="/?page=${i + 1}" class="pag pag-${
             i + 1
-          }" class="pag pag-${i + 1}">${i + 1}</a>`;
+          }">${i + 1}</a>`;
         }
       } else {
         for (i = 0; i < 5; i++) {
-          pagination.innerHTML += `<a href="/?page=${
+          pagination.innerHTML += `<a href="/?page=${i + 1}" class="pag pag-${
             i + 1
-          }" class="pag pag-${i + 1}">${i + 1}</a>`;
+          }">${i + 1}</a>`;
         }
         pagination.innerHTML += `<a href="#" class="pag">...</a>`;
         pagination.innerHTML += `<a href="/?page=${tdl}" class="pag pag-${tdl}">${tdl}</a>`;
-        pagination.innerHTML += `<a href="/?page=${
+        pagination.innerHTML += `<a href="/?page=${tdl + 1}" class="pag pag-${
           tdl + 1
-        }" class="pag pag-${tdl + 1}">${tdl + 1}</a>`;
+        }">${tdl + 1}</a>`;
       }
       pagination.innerHTML += `<a href="#" onclick="nextPage()" class="next">Next</a>`;
       document
@@ -98,6 +98,10 @@ fetch("data.json")
     }
     var prev = document.querySelector(".prev");
     var next = document.querySelector(".next");
+    var mobilePrev = document.querySelector(".mobile-prev");
+    var mobileNext = document.querySelector(".mobile-next");
     prev.addEventListener("click", prevPage);
     next.addEventListener("click", nextPage);
+    mobilePrev.addEventListener("click", prevPage);
+    mobileNext.addEventListener("click", nextPage);
   });
