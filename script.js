@@ -32,7 +32,7 @@ fetch("data.json")
     let thisTable = tableData.filter((table, index) => index == tableID)[0];
 
     if (!thisTable) {
-      window.location.href = "/?page=1";
+      window.location.href = "/paginationtable/?page=1";
     }
     //Populate Table
     function populateTable() {
@@ -60,21 +60,21 @@ fetch("data.json")
 
       if (tdl + 1 < 10) {
         for (i = 0; i < tdl; i++) {
-          pagination.innerHTML += `<a href="/?page=${i + 1}" class="pag pag-${
+          pagination.innerHTML += `<a href="/paginationtable/?page=${
             i + 1
-          }">${i + 1}</a>`;
+          }" class="pag pag-${i + 1}">${i + 1}</a>`;
         }
       } else {
         for (i = 0; i < 5; i++) {
-          pagination.innerHTML += `<a href="/?page=${i + 1}" class="pag pag-${
+          pagination.innerHTML += `<a href="/paginationtable/?page=${
             i + 1
-          }">${i + 1}</a>`;
+          }" class="pag pag-${i + 1}">${i + 1}</a>`;
         }
         pagination.innerHTML += `<a href="#" class="pag">...</a>`;
-        pagination.innerHTML += `<a href="/?page=${tdl}" class="pag pag-${tdl}">${tdl}</a>`;
-        pagination.innerHTML += `<a href="/?page=${tdl + 1}" class="pag pag-${
+        pagination.innerHTML += `<a href="/paginationtable/?page=${tdl}" class="pag pag-${tdl}">${tdl}</a>`;
+        pagination.innerHTML += `<a href="/paginationtable/?page=${
           tdl + 1
-        }">${tdl + 1}</a>`;
+        }" class="pag pag-${tdl + 1}">${tdl + 1}</a>`;
       }
       pagination.innerHTML += `<a href="#" onclick="nextPage()" class="next">Next</a>`;
       document
@@ -90,11 +90,11 @@ fetch("data.json")
 
     function prevPage() {
       if (currentPage == 1) return;
-      window.location.href = `/?page=${currentPage - 1}`;
+      window.location.href = `/paginationtable/?page=${currentPage - 1}`;
     }
     function nextPage() {
       if (currentPage == tdl + 1) return;
-      window.location.href = `/?page=${currentPage + 1}`;
+      window.location.href = `/paginationtable/?page=${currentPage + 1}`;
     }
     var prev = document.querySelector(".prev");
     var next = document.querySelector(".next");
